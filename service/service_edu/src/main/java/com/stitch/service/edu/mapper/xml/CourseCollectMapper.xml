@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stitch.service.edu.mapper.CourseCollectMapper">
+<select id="selectListByMemberId" resultType="com.stitch.service.edu.entity.vo.CourseCollectVo">
+   SELECT
+	cl.id,
+	cl.gmt_create as gmtCreate,
+	c.id as courseId,
+	c.title,
+	c.cover,
+  CONVERT(c.price, DECIMAL(8,2)) AS price,
+	c.lesson_num as lessonNum,
+	t.name AS teacherName
+	FROM edu_course_collect cl
+	LEFT JOIN edu_course c ON c.id = cl.course_id
+	LEFT JOIN edu_teacher t ON t.id=c.teacher_id
+	where cl.member_id = #{memberId}
+	order by cl.gmt_create desc
+</select>
+</mapper>

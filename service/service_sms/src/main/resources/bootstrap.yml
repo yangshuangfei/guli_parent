@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: service-sms
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 #nacos中心地址
+        file-extension: yaml # 配置文件格式，如果是properties文件则不用配置此项
+        namespace: 28180f37-bc5f-4f97-8ade-6227ed84bfd2
+#此文件优先于application.yml
+#application的配置会覆盖此文件
